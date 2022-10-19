@@ -5,6 +5,7 @@ const ruta_buscar = "getById?id=";
 const ruta_eliminar = "delete?id=";
 const ruta_listar = "listAll";
 var btnBuscarCliente = document.getElementById("buscarCliente");
+var contador = 0;
 
 async function ingresarCliente(){
   const inputId = document.getElementById("id");
@@ -26,8 +27,14 @@ let response = await  fetch(ruta, {
   }});
 
 let result = await response.json();
-console.log(result);
+if(result.data != null){
+  alert("se guardo a: " + result.data.nombre);
 }
+location.reload();
+}
+
+
+
 
 function buscarCliente(){
   let bus = document.getElementById("buscar").value;
@@ -35,11 +42,12 @@ function buscarCliente(){
   fetch(ruta)
   .then((response) => response.json())
   .then((json) => generarFila(json.data, "bodyBuscar"));
-  
 }
 
-async function eliminarCliente(){
-  let bus = document.getElementById("eliminar").value;
+
+
+async function eliminarCliente(bus){
+ // let bus = document.getElementById("eliminar").value;
   let ruta = ruta_base + ruta_eliminar + bus;
   const res = await fetch(ruta, {method: "DELETE"});
   const data = await res.json();
@@ -47,6 +55,7 @@ async function eliminarCliente(){
     alert("no existe...")
   }else{
     console.log("eliminado "+data.data.nombre);
+    location.reload();
   }
 }
 
@@ -61,7 +70,9 @@ const mostrarDatos = function (datos, nTabla) {
   for (dato of datos) {
     generarFila(dato, nTabla);
   }
-};
+}
+
+
 
 function generarFila(dato, nTabla) {
   if(dato === null){
@@ -69,7 +80,7 @@ function generarFila(dato, nTabla) {
   }else{
   const tabla = document.getElementById(nTabla);
   let fila = tabla.insertRow(-1);
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     let celda = fila.insertCell(i);
     if (i == 0) {
       celda.textContent = dato.id;
@@ -82,8 +93,18 @@ function generarFila(dato, nTabla) {
     }
     if (i == 3) {
       celda.textContent = dato.direccion;
+    }if (i == 4) {
+      var rows = document.getElementById('body').rows;
+      let dat = rows[contador].cells[0].innerHTML;
+      var button = document.createElement('button'); 
+      button.innerText = 'Eliminar'; 
+      button.onclick = function(){
+         eliminarCliente(dat);
+        }
+      celda.appendChild(button);
     }
    }
+   contador++;
   }
 }
 /*    
