@@ -1,0 +1,30 @@
+
+<mat-card id="mat">
+    <button mat-button [matMenuTriggerFor]="aboveMenu">Clientes</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-button (click)="openDialog()">
+        <h2>Registrar Cliente</h2>
+      </button>
+      <button mat-menu-item routerLink="/list-clientes"><h2>Ver lista de Clientes</h2></button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="belowMenu">Mecanicos</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="beforeMenu">Vehiculos</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="afterMenu">Facturas</button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </mat-card>
+
+

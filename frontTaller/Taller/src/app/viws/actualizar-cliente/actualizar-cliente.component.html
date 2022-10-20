@@ -1,0 +1,38 @@
+
+
+<br>
+<mat-card>
+  <h1>registrar Cliente</h1>
+  <br>
+<form [formGroup]="formActCliente" >
+<mat-form-field appearance="fill">
+  <mat-label>Id</mat-label>
+  <input matInput formControlName="id">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Nombre</mat-label>
+  <input matInput formControlName="nombre">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Telefono</mat-label>
+  <input matInput formControlName="telefono">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Direccion</mat-label>
+  <input matInput formControlName="direccion">
+</mat-form-field>
+<br><br>
+
+<div class="example-button-row">
+  <button (click)="actualizarCliente()" mat-raised-button color="primary">Registrar</button>
+</div>
+<div class="example-button-row">
+  <button (click)="NoCont()" mat-raised-button color="secundary">Cancelar</button>
+</div>
+
+</form>
+</mat-card>
+
